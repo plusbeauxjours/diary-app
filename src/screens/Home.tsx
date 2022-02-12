@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {BannerAd, BannerAdSize} from '@react-native-admob/admob';
+import {BannerAd, BannerAdSize, TestIds} from '@react-native-admob/admob';
 import styled from 'styled-components/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ParamListBase} from '@react-navigation/native';
@@ -97,32 +97,34 @@ const Home: React.FC<IProps> = ({navigation}) => {
   };
 
   return (
-    <View>
-      <Title>My journal</Title>
+    <>
+      <View>
+        <Title>My journal</Title>
+        <FlatList
+          data={feelings}
+          contentContainerStyle={{paddingVertical: 10}}
+          ItemSeparatorComponent={Separator}
+          keyExtractor={feeling => feeling._id + ''}
+          renderItem={({item}) => (
+            <TouchableOpacity onPress={() => onPress(item._id)}>
+              <Record>
+                <Emotion>{item.emotion}</Emotion>
+                <Message>{item.message}</Message>
+              </Record>
+            </TouchableOpacity>
+          )}
+        />
+        <Btn onPress={() => navigation.navigate('Write')}>
+          <Ionicons name="add" color="white" size={40} />
+        </Btn>
+      </View>
       <BannerAd
-        size={BannerAdSize.BANNER}
-        unitId={unitId}
-        onAdFailedToLoad={error => console.error(error)}
         ref={bannerRef}
+        size={BannerAdSize.ADAPTIVE_BANNER}
+        unitId={TestIds.BANNER}
+        onAdFailedToLoad={error => console.error(error)}
       />
-      <FlatList
-        data={feelings}
-        contentContainerStyle={{paddingVertical: 10}}
-        ItemSeparatorComponent={Separator}
-        keyExtractor={feeling => feeling._id + ''}
-        renderItem={({item}) => (
-          <TouchableOpacity onPress={() => onPress(item._id)}>
-            <Record>
-              <Emotion>{item.emotion}</Emotion>
-              <Message>{item.message}</Message>
-            </Record>
-          </TouchableOpacity>
-        )}
-      />
-      <Btn onPress={() => navigation.navigate('Write')}>
-        <Ionicons name="add" color="white" size={40} />
-      </Btn>
-    </View>
+    </>
   );
 };
 export default Home;
