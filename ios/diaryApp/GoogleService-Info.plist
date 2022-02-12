@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>41122061184-jc5mqtaipusjfcm26cj6iee0p2ff48ct.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.41122061184-jc5mqtaipusjfcm26cj6iee0p2ff48ct</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCul2siGD5V9TRvqPs_qhlr7LgbfGHmMVE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>41122061184</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>diary-app-ios</string>
+	<key>PROJECT_ID</key>
+	<string>diary-app-87066</string>
+	<key>STORAGE_BUCKET</key>
+	<string>diary-app-87066.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:41122061184:ios:6b23eb33328417789aff65</string>
+	<key>GADIsAdManagerApp</key>
+	<true/>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-2931981606209596/7244275057</string>
+</dict>
+</plist>

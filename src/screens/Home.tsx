@@ -1,6 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList, LayoutAnimation, TouchableOpacity} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {
+  FlatList,
+  LayoutAnimation,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 
+import {BannerAd, BannerAdSize} from '@react-native-admob/admob';
 import styled from 'styled-components/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ParamListBase} from '@react-navigation/native';
@@ -63,6 +69,12 @@ const Btn = styled.TouchableOpacity`
 `;
 
 const Home: React.FC<IProps> = ({navigation}) => {
+  const unitId =
+    Platform.OS === 'ios'
+      ? 'ca-app-pub-2931981606209596/7244275057'
+      : 'ca-app-pub-2931981606209596/4359091419';
+
+  const bannerRef = useRef(null);
   const realm = useDB();
   const [feelings, setFeelings] = useState([]);
 
@@ -87,6 +99,12 @@ const Home: React.FC<IProps> = ({navigation}) => {
   return (
     <View>
       <Title>My journal</Title>
+      <BannerAd
+        size={BannerAdSize.BANNER}
+        unitId={unitId}
+        onAdFailedToLoad={error => console.error(error)}
+        ref={bannerRef}
+      />
       <FlatList
         data={feelings}
         contentContainerStyle={{paddingVertical: 10}}
