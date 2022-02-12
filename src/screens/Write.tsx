@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {ParamListBase} from '@react-navigation/native';
 import colors from '../colors';
+import {useDB} from '../context';
 
 interface IProps {
   navigation: StackNavigationProp<ParamListBase>;
@@ -67,15 +68,26 @@ const EmotionText = styled.Text`
 
 const emotions = ['🤯', '🥲', '🤬', '🤗', '🥰', '😊', '🤩'];
 
-const Write: React.FC<IProps> = () => {
+const Write: React.FC<IProps> = ({navigation}) => {
+  const realm = useDB();
   const [selectedEmotion, setEmotion] = useState(null);
   const [feelings, setFeelings] = useState('');
+
   const onChangeText = text => setFeelings(text);
   const onEmotionPress = face => setEmotion(face);
+
   const onSubmit = () => {
     if (feelings === '' || selectedEmotion == null) {
       return Alert.alert('Please complete form.');
     }
+    realm.write(() => {
+      realm.create('Feeling', {
+        _id: Date.now(),
+        emotion: selectedEmotion,
+        message: feelings,
+      });
+    });
+    navigation.goBack();
   };
   return (
     <View>
